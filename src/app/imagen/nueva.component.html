@@ -1,0 +1,63 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Carregando...</p>
+</ngx-spinner>
+
+<form (ngSubmit)="onUpload()" novalidate enctype="multipart/form-data">
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="imagen" #imagenInputFile
+        (change)="onFileChange($event)" accept="image/png, image/jpeg, image/gif">
+        <label class="custom-file-label" for="imagen">Clique aqui para carregar uma imagem</label>
+    </div>
+    <div *ngIf="imagen" class="mt-5">
+        <h5>Previa:</h5>
+        <div>
+            <img class="image-thumbnail" style="max-width: 100px" [src]="imagenMin">
+        </div>
+    </div>
+    <div class="form-group d-flex justify-content-between my-3">
+        <button type="submit" class="btn btn-outline-success" [disabled]="!imagen"><i class="fas fa-upload"></i> Fazer Upload</button>
+        <button class="btn btn-outline-danger" [disabled]="!imagen" (click)="reset()"><i class="fas fa-sync-alt"></i> Resetar</button>
+    </div>
+</form>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="productForm">
+    <div class="input-group">
+        <span class="input-group-text">Nome:</span>
+        <input type="text" class="form-control mb-3" formControlName="name" id="name">
+    </div>
+    <div class="input-group">
+        <span class="input-group-text">Descrição:</span>
+        <textarea class="form-control mb-3" formControlName="description" aria-label="Descrição"></textarea>
+        <!-- <input type="text" class="custom-input ml-3" formControlName="description" id="description"> -->
+    </div>
+    <div class="mb-3">
+        <select class="form-select form-select-lg" (change)="changeCategory($event)" required aria-label="category">
+          <option value="">Selecione uma categoria</option>
+          <option  *ngFor="let category of categories;">{{category.description}}</option>
+        </select>
+        <div class="invalid-feedback">Nenhuma categoria cadastrada</div>
+        <button type="button" class="btn btn-outline-success ml-3" (click)="navigateToCreateCategory()"><i class="fas fa-create"></i> Criar Nova</button>
+    </div>
+    <div class="input-group">
+        <span class="input-group-text">Sub-Categoria:</span>
+        <input type="text" class="form-control mb-3" formControlName="subCategory" id="subCategory">
+    </div>
+    <div class="form-check">
+        <input class="form-check-input mb-3 size-4" type="checkbox" value="" formControlName="highlighted" id="highlighted">
+        <label class="form-check-label mb-3" for="highlighted">
+            Produto em destaque?
+        </label>
+      </div>
+    <div class="input-group">
+        <span class="input-group-text">Preço:</span>
+        <input type="number" class="form-control mb-3" formControlName="price" id="price">
+    </div>
+    <div class="input-group">
+        <span class="input-group-text">Quantidade:</span>
+        <input type="number" class="form-control mb-3" formControlName="quantity" id="quantity">
+    </div>
+    <div class="form-group d-flex justify-content-between my-3">
+        <button type="submit" class="btn btn-outline-success"><i class="fas fa-save"></i> Salvar</button>
+        <button class="btn btn-outline-danger" [disabled]="!imagen" (click)="reset()"><i class="fas fa-sync-alt"></i> Limpar</button>
+    </div>
+</form>

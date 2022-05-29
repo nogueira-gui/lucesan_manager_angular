@@ -1,0 +1,148 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Excluindo...</p>
+</ngx-spinner>
+
+<div class="row">
+  <div class="list-group">
+    <a (click)="selectedOption('productOption')" id='productOption' class="list-group-item list-group-item-action active" aria-current="true">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Produtos</h5>
+        <small>--</small>
+      </div>
+      <p class="mb-1">Lista de produtos.</p>
+      <small>Visão gerencial dos produtos listados.</small>
+    </a>
+    <a (click)="selectedOption('categoryOption')" id='categoryOption' class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Categorias</h5>
+        <small class="text-muted">--</small>
+      </div>
+      <p class="mb-1">Lista de categorias e sub-categorias.</p>
+      <small class="text-muted">Visão gerencial das categorias.</small>
+    </a>
+    <a (click)="selectedOption('campaignOption')" id='campaignOption' class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Campanhas</h5>
+        <small class="text-muted">--</small>
+      </div>
+      <p class="mb-1">Lista das campanhas ativas e produtos relacionados.</p>
+      <small class="text-muted">Gerenciar campanhas.</small>
+    </a>
+  </div>
+  <div class="ml-3" *ngIf="option == 'productOption'">
+    <p class="ml-3" *ngIf="!(products.length > 0)">Nenhum produto cadastrado.</p>
+    <table class="table table-bordered" *ngIf="products.length > 0">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Campanha</th>
+          <th scope="col">Preço</th>
+          <th scope="col">Destaque</th>
+          <th scope="col">Imagem</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products;">
+          <th scope="row">{{product.id}}</th>
+          <td>{{product.name}}</td>
+          <td>{{product.category}}</td>
+          <td>{{product.campaign}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.highlighted ? "Sim" : "Não"}}</td>
+          <td><img style="height: 100px;" class="img-thumbnail" src="{{product.images.url}}" alt=""></td>
+          <td>
+            <button type="button" (click)="abrirModal(i)" class="btn btn-primary"><i class="far fa-eye"></i></button>
+            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+            <button type="button" (click)="deleteProduct(product.id)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ml-3" *ngIf="option == 'categoryOption'">
+    <p class="ml-3" *ngIf="!(categories.length > 0)">Nenhuma categoria cadastrada.</p>
+    <table class="table table-bordered" *ngIf="categories.length > 0">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Ativo</th>
+          <th scope="col">Codigo</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Imagem</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories;">
+          <th scope="row">{{category.id}}</th>
+          <td>{{category.active ? "Sim" : "Não"}}</td>
+          <td>{{category.code}}</td>
+          <td>{{category.description}}</td>
+          <td><img style="height: 100px;" class="img-thumbnail" src="{{category.image.url}}" alt=""></td>
+          <td>
+            <button type="button" (click)="abrirModal(i)" class="btn btn-primary"><i class="far fa-eye"></i></button>
+            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+            <button type="button" (click)="deleteCategory(category.id)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ml-3" *ngIf="option == 'campaignOption'">
+    <p class="ml-3" *ngIf="!(campaigns.length > 0)">Nenhuma categoria cadastrada.</p>
+    <table class="table table-bordered" *ngIf="campaigns.length > 0">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Ativo</th>
+          <th scope="col">Codigo</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Desconto</th>
+          <th scope="col">Banner</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let campaign of campaigns;">
+          <th scope="row">{{campaign.id}}</th>
+          <td>{{campaign.active ? "Sim" : "Não"}}</td>
+          <td>{{campaign.code}}</td>
+          <td>{{campaign.description}}</td>
+          <td>{{campaign.priceCut*100}}%</td>
+          <td><img style="height: 100px;" class="img-thumbnail" src="{{campaign.image.url}}" alt=""></td>
+          <td>
+            <button type="button" (click)="abrirModal(i)" class="btn btn-primary"><i class="far fa-eye"></i></button>
+            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+            <button type="button" (click)="deleteCategory(campaign.id)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <div class="col-md-4" *ngFor="let product of products; index as i">
+    <div class="card mb-3 animated zoomIn">
+      <h3 class="card-header">{{product.images.name}}</h3>
+      <div class="card-body">
+        <h5 class="card-title"><b>ID: </b>{{product.images.imageId}}</h5>
+      </div>
+      <div class="card-body text-center">
+        <img style="height: 200px; width: 100%; display: block;" src="{{product.images.url}}" alt="Card image">
+      </div>
+
+      <div class="card-body d-flex justify-content-between">
+        <button class="btn btn-outline-primary" (click)="abrirModal(i)"><i class="far fa-eye"></i> Ver</button>
+        <button class="btn btn-outline-warning" *ngIf="!product.active" (click)="active(product.id)"> Ativar</button>
+        <button class="btn btn-outline-warning" *ngIf="product.active" (click)="deactive(product.id)"> Inativar</button>
+        <button class="btn btn-outline-danger" (click)="delete(product.id)"><i class="far fa-trash-alt"></i>
+          Deletar</button>
+      </div>
+      <div class="card-footer text-center">
+        &copy; lucesan temakeria
+      </div>
+    </div>
+
+  </div> -->
+</div>
