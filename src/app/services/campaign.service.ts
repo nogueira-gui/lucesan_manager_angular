@@ -8,7 +8,7 @@ import { Campaign } from '../models/campaign';
 })
 export class CampaignService {
 
-//   apiUrl = 'http://localhost:8080/v1/campaign';
+  // apiUrl = 'http://localhost:8080/v1/campaign';
   apiUrl= 'https://lucesan.herokuapp.com/v1/campaign';
 
   constructor(private httpClient: HttpClient) { }

@@ -42,8 +42,7 @@ export class ListaComponent implements OnInit {
     element.classList.add('active');
     this.option = elementId;
     if (!this.campaign.length && this.option === 'campaignOption') {
-      // TODO call to backend to load banners list
-      console.log("load campaign...");
+      this.loadCampaigns();
     }
     if (!this.categories.length && this.option === 'categoryOption') {
       this.loadCategories();

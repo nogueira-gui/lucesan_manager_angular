@@ -6,6 +6,8 @@ import { ProductService } from '../services/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category';
+import { CampaignService } from '../services/campaign.service';
+import { Campaign } from '../models/campaign';
 
 @Component({
   selector: 'app-nueva',
@@ -22,11 +24,13 @@ export class NuevaComponent implements OnInit {
   productForm: FormGroup;
 
   categories: Category[] = [];
+  campaigns: Campaign[] = [];
 
   constructor(
     private imagenService: ImagenService,
     private productService: ProductService,
     private categoryService: CategoryService,
+    private campaignService: CampaignService,
     private router: Router,
     private formBuider: FormBuilder,
     private spinner: NgxSpinnerService
@@ -36,6 +40,7 @@ export class NuevaComponent implements OnInit {
       description: [''],
       category: ['',Validators.required],
       subCategory: [''],
+      campaign: ['',Validators.required],
       images: ['',Validators.required],
       highlighted: [false,Validators.required],
       price: [0,Validators.required],
@@ -48,6 +53,11 @@ export class NuevaComponent implements OnInit {
     this.categoryService.list().subscribe(
       data => {
         this.categories=data;
+      }
+    );
+    this.campaignService.list().subscribe(
+      data => {
+        this.campaigns=data;
       }
     );
   }
@@ -86,6 +96,7 @@ export class NuevaComponent implements OnInit {
       description: this.productForm.value.description,
       category: this.productForm.value.category,
       subCategory: this.productForm.value.subCategory,
+      campaign: this.productForm.value.campaign,
       images: this.productForm.value.images,
       highlighted: this.productForm.value.highlighted,
       price: this.productForm.value.price,
@@ -115,6 +126,7 @@ export class NuevaComponent implements OnInit {
       description: '',
       category: '',
       subCategory: '',
+      campaign: '',
       images: '',
       highlighted: false,
       price: 0,
@@ -129,5 +141,13 @@ export class NuevaComponent implements OnInit {
 
   navigateToCreateCategory(): void {
     this.router.navigate(['/category']);
+  }
+
+  changeCampaign(event: any): void {
+    this.productForm.patchValue({campaign:event.target.value});
+  } 
+
+  navigateToCreateCampaign(): void {
+    this.router.navigate(['/campaign']);
   }
 }

@@ -27,10 +27,9 @@ export class CampaignComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) { 
     this.campaignForm = this.formBuider.group({
-      code: ['', Validators.required],
       description: ['', Validators.required],
+      name: ['', Validators.required],
       image: ['',Validators.required],
-      priceCut: [0]
     })
   }
 
@@ -50,6 +49,7 @@ export class CampaignComponent implements OnInit {
     this.spinner.show();
     this.imagenService.upload("/v1/campaign/image/", this.imagen).subscribe(
       data => {
+        console.log(data);
         this.campaignForm.patchValue({image:data.imageUrl});
         this.spinner.hide();
       },
@@ -62,11 +62,14 @@ export class CampaignComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if(!this.campaignForm.value.image){
+      alert("Por favor faça o upload da mensagem!");
+      return;
+    }
     const params = {
-      code: this.campaignForm.value.code,
       description: this.campaignForm.value.description,
+      name: this.campaignForm.value.name,
       image: this.campaignForm.value.image,
-      priceCut: this.campaignForm.value.priceCut / 100,
     };
     this.spinner.show();
     this.campaignService.save(params).subscribe(
@@ -87,10 +90,9 @@ export class CampaignComponent implements OnInit {
     this.imagenMin = null;
     this.imagenFile.nativeElement.value = '';
     this.campaignForm.patchValue({
-      code: '',
       description: '',
+      name: '',
       image: '',
-      priceCut: 0,
     })
   }
 

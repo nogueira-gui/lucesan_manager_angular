@@ -8,6 +8,7 @@ export class Product {
     highlighted: boolean;
     category: string;
     subCategory: string;
+    campaign: string;
     price: number;
     quantity: number;
     available: boolean;

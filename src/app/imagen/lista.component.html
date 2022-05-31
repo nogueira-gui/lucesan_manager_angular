@@ -10,7 +10,7 @@
         <small>--</small>
       </div>
       <p class="mb-1">Lista de produtos.</p>
-      <small>Visão gerencial dos produtos listados.</small>
+      <small>Visão gerencial dos produtos.</small>
     </a>
     <a (click)="selectedOption('categoryOption')" id='categoryOption' class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
@@ -25,7 +25,7 @@
         <h5 class="mb-1">Campanhas</h5>
         <small class="text-muted">--</small>
       </div>
-      <p class="mb-1">Lista das campanhas ativas e produtos relacionados.</p>
+      <p class="mb-1">Lista das campanhas.</p>
       <small class="text-muted">Gerenciar campanhas.</small>
     </a>
   </div>
@@ -98,9 +98,8 @@
         <tr>
           <th scope="col">Id</th>
           <th scope="col">Ativo</th>
-          <th scope="col">Codigo</th>
+          <th scope="col">Titulo</th>
           <th scope="col">Descrição</th>
-          <th scope="col">Desconto</th>
           <th scope="col">Banner</th>
           <th scope="col">Ações</th>
         </tr>
@@ -109,10 +108,9 @@
         <tr *ngFor="let campaign of campaigns;">
           <th scope="row">{{campaign.id}}</th>
           <td>{{campaign.active ? "Sim" : "Não"}}</td>
-          <td>{{campaign.code}}</td>
+          <td>{{campaign.name}}</td>
           <td>{{campaign.description}}</td>
-          <td>{{campaign.priceCut*100}}%</td>
-          <td><img style="height: 100px;" class="img-thumbnail" src="{{campaign.image.url}}" alt=""></td>
+          <td><img *ngIf="campaign.image.url" style="height: 100px;" class="img-thumbnail" src="{{campaign.image.url}}" alt=""></td>
           <td>
             <button type="button" (click)="abrirModal(i)" class="btn btn-primary"><i class="far fa-eye"></i></button>
             <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>

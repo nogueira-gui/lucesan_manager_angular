@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ImagenService } from '../services/imagen.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ProductService } from '../services/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from '../services/category.service';
 
@@ -28,7 +27,6 @@ export class CategoryComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) { 
     this.categoryForm = this.formBuider.group({
-      code: ['', Validators.required],
       description: ['', Validators.required],
       image: ['',Validators.required],
     })

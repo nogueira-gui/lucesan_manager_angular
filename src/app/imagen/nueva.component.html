@@ -38,6 +38,14 @@
         <div class="invalid-feedback">Nenhuma categoria cadastrada</div>
         <button type="button" class="btn btn-outline-success ml-3" (click)="navigateToCreateCategory()"><i class="fas fa-create"></i> Criar Nova</button>
     </div>
+    <div class="mb-3">
+        <select class="form-select form-select-lg" (change)="changeCampaign($event)" required aria-label="category">
+          <option value="">Selecione uma campanha</option>
+          <option *ngFor="let campaign of campaigns;">{{campaign.name}}</option>
+        </select>
+        <div class="invalid-feedback">Nenhuma campanha cadastrada</div>
+        <button type="button" class="btn btn-outline-success ml-3" (click)="navigateToCreateCampaign()"><i class="fas fa-create"></i> Criar Nova</button>
+    </div>
     <div class="input-group">
         <span class="input-group-text">Sub-Categoria:</span>
         <input type="text" class="form-control mb-3" formControlName="subCategory" id="subCategory">
