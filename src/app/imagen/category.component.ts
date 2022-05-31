@@ -27,6 +27,7 @@ export class CategoryComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) { 
     this.categoryForm = this.formBuider.group({
+      code: ['', Validators.required],
       description: ['', Validators.required],
       image: ['',Validators.required],
     })
