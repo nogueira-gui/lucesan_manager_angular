@@ -9,7 +9,7 @@ import { Product } from '../models/product';
 export class ProductService {
 
   // apiUrlTeste = 'http://localhost:8080/v1/product';
-  apiUrl= 'https://lucesan.herokuapp.com/v1/product';
+  apiUrl= 'http://ec2-52-67-31-141.sa-east-1.compute.amazonaws.com:8080/v1/product';
 
   constructor(private httpClient: HttpClient) { }
 

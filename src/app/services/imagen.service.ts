@@ -9,7 +9,7 @@ import { Imagen } from '../models/imagen';
 export class ImagenService {
 
   // apiUrl = 'http://localhost:8080';
-  apiUrl = 'https://lucesan.herokuapp.com';
+  apiUrl = 'http://ec2-52-67-31-141.sa-east-1.compute.amazonaws.com:8080/';
   constructor(private httpClient: HttpClient) { }
 
   public list(url:string): Observable<Imagen[]> {
