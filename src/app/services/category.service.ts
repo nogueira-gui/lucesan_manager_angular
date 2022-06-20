@@ -9,7 +9,7 @@ import { Category } from '../models/category';
 export class CategoryService {
 
 //   apiUrl = 'http://localhost:8080/v1/category';
-  apiUrl= 'http://ec2-52-67-31-141.sa-east-1.compute.amazonaws.com:8080/v1/category';
+  apiUrl= 'https://ec2-52-67-31-141.sa-east-1.compute.amazonaws.com:8080/v1/category';
 
   constructor(private httpClient: HttpClient) { }
 
