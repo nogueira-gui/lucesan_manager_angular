@@ -47,7 +47,7 @@ export class CategoryComponent implements OnInit {
 
   onUpload(): void {
     this.spinner.show();
-    this.imagenService.upload("/v1/category/image/", this.imagen).subscribe(
+    this.imagenService.upload("v1/category/image", this.imagen).subscribe(
       data => {
         this.categoryForm.patchValue({image:data.imageUrl});
         this.spinner.hide();

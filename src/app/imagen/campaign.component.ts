@@ -47,7 +47,7 @@ export class CampaignComponent implements OnInit {
 
   onUpload(): void {
     this.spinner.show();
-    this.imagenService.upload("/v1/campaign/image/", this.imagen).subscribe(
+    this.imagenService.upload("v1/campaign/image", this.imagen).subscribe(
       data => {
         console.log(data);
         this.campaignForm.patchValue({image:data.imageUrl});

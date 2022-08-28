@@ -8,8 +8,7 @@ import { Campaign } from '../models/campaign';
 })
 export class CampaignService {
 
-  // apiUrl = 'http://localhost:8080/v1/campaign';
-  apiUrl= 'https://ec2-52-67-31-141.sa-east-1.compute.amazonaws.com:8080/v1/campaign';
+  apiUrl = 'http://localhost:8080/v1/campaign';
 
   constructor(private httpClient: HttpClient) { }
 

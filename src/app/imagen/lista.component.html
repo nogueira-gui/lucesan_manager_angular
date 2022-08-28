@@ -92,7 +92,7 @@
     </table>
   </div>
   <div class="ml-3" *ngIf="option == 'campaignOption'">
-    <p class="ml-3" *ngIf="!(campaigns.length > 0)">Nenhuma categoria cadastrada.</p>
+    <p class="ml-3" *ngIf="!(campaigns.length > 0)">Nenhuma campanha cadastrada.</p>
     <table class="table table-bordered" *ngIf="campaigns.length > 0">
       <thead>
         <tr>
@@ -114,7 +114,7 @@
           <td>
             <button type="button" (click)="abrirModal(i)" class="btn btn-primary"><i class="far fa-eye"></i></button>
             <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-            <button type="button" (click)="deleteCategory(campaign.id)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+            <button type="button" (click)="deleteCampaign(campaign.id)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
           </td>
         </tr>
       </tbody>

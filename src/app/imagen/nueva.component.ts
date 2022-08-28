@@ -73,7 +73,7 @@ export class NuevaComponent implements OnInit {
 
   onUpload(): void {
     this.spinner.show();
-    this.imagenService.upload("/v1/product/image/", this.imagen).subscribe(
+    this.imagenService.upload("v1/product/image", this.imagen).subscribe(
       data => {
         this.productForm.patchValue({images:data.imageUrl});
         this.spinner.hide();

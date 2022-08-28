@@ -33,7 +33,7 @@
     <div class="mb-3">
         <select class="form-select form-select-lg" (change)="changeCategory($event)" required aria-label="category">
           <option value="">Selecione uma categoria</option>
-          <option  *ngFor="let category of categories;">{{category.description}}</option>
+          <option  *ngFor="let category of categories;">{{category.code}}</option>
         </select>
         <div class="invalid-feedback">Nenhuma categoria cadastrada</div>
         <button type="button" class="btn btn-outline-success ml-3" (click)="navigateToCreateCategory()"><i class="fas fa-create"></i> Criar Nova</button>
